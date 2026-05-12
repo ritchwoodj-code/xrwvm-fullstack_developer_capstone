@@ -1,0 +1,10 @@
+{
+  "esversion": 8,
+  "node": true,
+  "asi": true,
+  "sub": true,
+  "-W097": true,
+  "globals": {
+    "data": true
+  }
+}

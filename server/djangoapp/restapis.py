@@ -28,11 +28,13 @@ def get_request(endpoint, **kwargs):
 def analyze_review_sentiments(text):
     request_url = sentiment_analyzer_url + "analyze/" + text
     try:
-        response = requests.get(request_url)
-        return response.json()
+        response = requests.get(request_url, timeout=2)
+        data = response.json()
+        if isinstance(data, dict) and "sentiment" in data:
+            return data
+        return {"sentiment": "neutral"}
     except Exception as err:
-        print("Unexpected {err=}, {type(err)=}".format(err=err))
-        print("Network exception occurred")
+        print("Sentiment analyzer unreachable: {}".format(err))
         return {"sentiment": "neutral"}
 
 

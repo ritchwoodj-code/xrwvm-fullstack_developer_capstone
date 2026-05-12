@@ -23,4 +23,4 @@ jobs:
         run: npm install -g jshint
 
       - name: Run jshint on Express server
-        run: jshint server/database/app.js
+        run: jshint --config .jshintrc server/database/app.js
