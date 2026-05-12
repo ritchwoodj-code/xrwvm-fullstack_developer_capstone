@@ -1,0 +1,26 @@
+name: Lint JavaScript code
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install jshint
+        run: npm install -g jshint
+
+      - name: Run jshint on Express server
+        run: jshint server/database/app.js
